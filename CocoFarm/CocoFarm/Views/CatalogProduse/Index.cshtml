@@ -15,6 +15,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Cod)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pret)
+        </th>
         <th></th>
     </tr>
 
@@ -26,6 +29,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Cod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pret)
             </td>
             <td>
                 @Html.ActionLink("Modifică", "Edit", new { id = item.Id }) |

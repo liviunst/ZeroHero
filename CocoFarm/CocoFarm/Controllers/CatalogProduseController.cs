@@ -67,7 +67,7 @@ namespace CocoFarm.Controllers
         public ActionResult Delete(int id)
         {
             var produs = store.GetById(id);
-            return View();
+            return View(produs);
         }
 
         [HttpPost]
