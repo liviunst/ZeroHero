@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "AddProp";
+}
+@model CocoFarm.Models.Proprietate
+<h2>Adaugare Proprietate</h2>
+
+@using (Html.BeginForm())
+{
+    
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>Proprietate noua</legend>
+        <div>
+            @Html.LabelFor(model => model.Nume)
+            @Html.EditorFor(model => model.Nume)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Descriere)
+            @Html.EditorFor(model => model.Descriere)
+        </div>
+    </fieldset>
+    <p>
+        <input type="submit" value="Adaugă Proprietate" /> |
+        @Html.ActionLink("Înapoi în listă", "IndexProp")
+    </p>
+}

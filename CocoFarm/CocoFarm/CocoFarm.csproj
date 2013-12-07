@@ -134,6 +134,9 @@
     </Compile>
     <Compile Include="Models\Produs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proprietate.cs" />
+    <Compile Include="ProprietateValoare.cs" />
+    <Compile Include="Proprietati.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -225,6 +228,9 @@
     <Content Include="Views\CatalogProduse\Details.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\CatalogProduse\Index.cshtml" />
+    <Content Include="Views\CatalogProduse\AddProp.cshtml" />
+    <Content Include="Views\CatalogProduse\IndexProp.cshtml" />
+    <Content Include="Views\CatalogProduse\AddPropToProd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

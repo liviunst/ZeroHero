@@ -33,12 +33,27 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Pret)
             </td>
+                @foreach (var prop in item.ProprietatiProdus)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => prop.Valoare)
+                    </td> 
+                }
             <td>
                 @Html.ActionLink("Modifică", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Detalii", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Șterge", "Delete", new { id = item.Id })
+                @Html.ActionLink("Adauga Prop", "AddPropToProd", new { id = item.Id })
+                               
             </td>
+
         </tr>
     }
 
 </table>
+
+@*<div>@Html.ActionLink("Catalog produse", "Index", "CatalogProduse")</div>*@
+
+<div>@Html.ActionLink("Catalog proprietati", "IndexProp", "CatalogProduse")</div>
+
+

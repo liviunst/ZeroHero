@@ -12,11 +12,39 @@ namespace CocoFarm.Controllers
     public class CatalogProduseController : Controller
     {
         private IDataStore<Produs> store = new MemoryDataStore<Produs>();
+        private IDataStore<Proprietate> propList = new MemoryDataStore<Proprietate>();
+
+        public ActionResult AddPropToProd(int produsId)
+        {
+            IEnumerable<Proprietate> proprietati = propList.GetAll();
+            ViewData["proprietate"] = proprietati;
+
+            var model = new ProprietateValoare();
+            model.ProdusId = produsId;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AddPropToProd(ProprietateValoare model)
+        {
+            // luam produsul, ii adaugam proprietatea, salvam produsul
+
+            var produs = store.GetById(model.ProdusId);
+            produs.ProprietatiProdus.Add(model);
+            return View("Index");
+        }
 
         public ActionResult Index()
         {
             IEnumerable<Produs> produse = store.GetAll();
             return View(produse);
+        }
+
+        public ActionResult IndexProp()
+        {
+            IEnumerable<Proprietate> proprietati = propList.GetAll();
+            return View(proprietati);
         }
 
         public ActionResult Details(int id)
@@ -30,11 +58,31 @@ namespace CocoFarm.Controllers
             return View();
         }
 
+        public ActionResult AddProp()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddProp(Proprietate total)
+        {
+            try
+            {
+                propList.Create(total);
+                return RedirectToAction("IndexProp");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
         [HttpPost]
         public ActionResult Create(Produs produs)
         {
             try
             {
+                produs.ProprietatiProdus = new Proprietati();
                 store.Create(produs);
                 return RedirectToAction("Index");
             }

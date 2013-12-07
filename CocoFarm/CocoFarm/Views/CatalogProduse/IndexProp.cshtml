@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Index Prop";
+}
+@model IEnumerable<CocoFarm.Models.Proprietate>
+
+<h2>Proprietatile disponibile</h2>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nume)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descriere)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nume)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descriere)
+            </td>               
+        </tr>
+    }
+    <tr>
+        @Html.ActionLink("Adauga Proprietate", "AddProp")
+    </tr>
+
+</table>
+
+<div>@Html.ActionLink("Catalog produse", "Index", "CatalogProduse")</div>
+
+@*<div>@Html.ActionLink("Catalog proprietati", "IndexProp", "CatalogProduse")</div>*@
