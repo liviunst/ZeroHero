@@ -23,6 +23,7 @@
 
     @foreach (var item in Model)
     {
+        <p>
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Denumire)
@@ -33,12 +34,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Pret)
             </td>
-                @foreach (var prop in item.ProprietatiProdus)
-                {
-                    <td>
-                        @Html.DisplayFor(modelItem => prop.Valoare)
-                    </td> 
-                }
+                <table>
+                    @foreach (var prop in item.ProprietatiProdus)
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => prop.Valoare)
+                        </td>
+                    }
+                </table>
             <td>
                 @Html.ActionLink("Modifică", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Detalii", "Details", new { id = item.Id }) |
@@ -48,6 +51,7 @@
             </td>
 
         </tr>
+        </p>
     }
 
 </table>

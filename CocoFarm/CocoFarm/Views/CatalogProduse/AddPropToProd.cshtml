@@ -7,26 +7,25 @@
 
 @model CocoFarm.Models.ProprietateValoare
 <h2>Add Prop To Prod</h2>
-<form action="/CatalogProduse/AddPropToProd/@Model.ProdusId" method="post">
 
-
-    @Html.HiddenFor(model => model.ProdusId)
-
-    <select>
-        @foreach (var item in listaProprietati)
-        {
-            <option value="@item.Id">@Html.DisplayFor(modelItem => item.Nume) </option>
-        }
-
-    </select>
-
-
-
-    <div>
-        @Html.LabelFor(model => model.Valoare)
-        @Html.EditorFor(model => model.Valoare)
-    </div>
-
-    <input type="submit" value="submit" />
-
-</form>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>Proprietate noua</legend>
+        <select>
+            @foreach (var item in listaProprietati)
+            {
+                <option value="@item.Id">@Html.DisplayFor(modelItem => item.Nume) </option>
+            }
+        </select>
+        <div>
+            @Html.LabelFor(model => model.Valoare)
+            @Html.EditorFor(model => model.Valoare)
+        </div>
+    </fieldset>
+    <p>
+        <input type="submit" value="submit" /> |
+        @Html.ActionLink("Înapoi în listă", "Index")
+    </p>
+}

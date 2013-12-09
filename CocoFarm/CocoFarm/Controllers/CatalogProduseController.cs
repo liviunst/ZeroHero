@@ -14,15 +14,16 @@ namespace CocoFarm.Controllers
         private IDataStore<Produs> store = new MemoryDataStore<Produs>();
         private IDataStore<Proprietate> propList = new MemoryDataStore<Proprietate>();
 
-        public ActionResult AddPropToProd(int produsId)
+        public ActionResult AddPropToProd(int id)
         {
             IEnumerable<Proprietate> proprietati = propList.GetAll();
             ViewData["proprietate"] = proprietati;
 
             var model = new ProprietateValoare();
-            model.ProdusId = produsId;
+            model.ProdusId = id;
 
             return View(model);
+            //return View();
         }
 
         [HttpPost]
@@ -30,9 +31,9 @@ namespace CocoFarm.Controllers
         {
             // luam produsul, ii adaugam proprietatea, salvam produsul
 
-            var produs = store.GetById(model.ProdusId);
+            var produs = store.GetById(model.ProdusId + 1);
             produs.ProprietatiProdus.Add(model);
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         public ActionResult Index()
